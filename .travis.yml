@@ -1,11 +1,11 @@
 language: java
 sudo: false
 jdk: oraclejdk8
-
+cache:
+  directories:
+  - "$HOME/.ivy2/cache"
+  - "$HOME/.m2"
 script:
-  mvn verify
-after_success:
-  chmod a+x deploy.sh
-  ./deploy.sh
+- "./mvnw clean install"
 notifications:
   email: false
