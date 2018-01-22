@@ -34,8 +34,8 @@ public class PersonCreateController {
 	@RequestMapping(value = "/createPerson", method = RequestMethod.POST)
 	public String performCreate(@ModelAttribute Person person, RedirectAttributes redirectAttributes,
 			SessionStatus sessionStatus) {
-		String message = null;
-		String viewName = null;
+		String message;
+		String viewName;
 		try {
 			personService.create(person);
 			message = "Person created. Person id :" + person.getId();
