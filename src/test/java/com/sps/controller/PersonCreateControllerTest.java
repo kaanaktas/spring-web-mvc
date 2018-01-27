@@ -15,11 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 
-import static org.hamcrest.Matchers.any;
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -54,21 +50,38 @@ public class PersonCreateControllerTest {
     }
 
     @Test
-    public void TestPostCreatePerson() throws Exception {
-        Person person_1 = new Person();
-        person_1.setId(1L);
-        person_1.setFirstName("Kaan");
-        person_1.setLastName("Aktas");
-
-        doNothing().when(personServiceMock).create(person_1);
-
-        mockMvc.perform(post("/createPerson")
-                .param("id", "1")
-                .param("firstName", "Kaan")
-                .param("lastName", "Aktas")
-                .sessionAttr("person", new ArrayList<>(0)))
-                .andExpect(status().isFound());
+    public void TestFailedCreatePerson() throws Exception {
+        mockMvc.perform(get("/createPersonFailed"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("personCreate"))
+                .andExpect(forwardedUrl("personCreate"));
     }
 
+    @Test
+    public void TestPostCreatePersonSuccess() throws Exception {
+        Person person = new Person();
+        person.setId(1L);
+        person.setFirstName("Kaan");
+        person.setLastName("Aktas");
 
+        mockMvc.perform(post("/createPerson")
+                .sessionAttr("person", person))
+                .andExpect(status().isFound())
+                .andExpect(model().attributeExists())
+                .andExpect(redirectedUrl("/mvc/listPersons"))
+                .andExpect(flash().attributeExists("message"))
+                .andExpect(flash().attribute("message", "Person created. Person id :1"));
+    }
+
+    @Test
+    public void TestPostCreatePersonFailed() throws Exception {
+
+        mockMvc.perform(post("/createPerson")
+                .sessionAttr("person", new ArrayList<>()))
+                .andExpect(status().isFound())
+                .andExpect(model().attributeExists())
+                .andExpect(redirectedUrl("/mvc/createPersonFailed"))
+                .andExpect(flash().attributeExists("message"))
+                .andExpect(flash().attribute("message", "Person create failed"));
+    }
 }
