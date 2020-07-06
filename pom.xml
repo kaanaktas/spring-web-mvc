@@ -28,7 +28,21 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+			<repository>
+					<id>github</id>
+					<name>Sardis GitHub Maven Repo</name>
+					<url>https://maven.pkg.github.com/kaanaktas/maven-repository</url>
+			</repository>
+	</repositories>
+
 	<dependencies>
+		<dependency>
+				<groupId>com.pay.sardis</groupId>
+				<artifactId>core</artifactId>
+				<version>0.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
