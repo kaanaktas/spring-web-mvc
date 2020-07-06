@@ -1,0 +1,26 @@
+FROM maven:3.6.3-jdk-11-slim as builder
+
+ARG GITHUB_USERNAME
+ARG GITHUB_TOKEN
+
+WORKDIR /app
+COPY pom.xml .
+#ADD ./settings.xml /root/.m2/settings.xml
+
+RUN echo "Oh dang look at that $GITHUB_USERNAME and ${GITHUB_TOKEN}}"
+
+RUN mkdir -p /root/.m2
+RUN echo "<settings><servers><server><id>github</id><username>$GITHUB_USERNAME</username><password>$GITHUB_TOKEN</password></server></servers></settings>" > /root/.m2/settings.xml
+
+#cache mvn dependencies
+
+RUN mvn dependency:go-offline
+
+COPY ./src /app/src
+RUN mvn test
+
+FROM adoptopenjdk/openjdk11:alpine-jre
+COPY --from=builder /app/target/danske-ob-service*.jar ./danske-ob-service.jar
+#EXPOSE 45503
+
+CMD ["java", "-jar", "danske-ob-service.jar"]

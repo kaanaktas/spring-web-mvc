@@ -1,6 +1,10 @@
-language: java
-sudo: false
-script: "mvn cobertura:cobertura"
+sudo: required
+services:
+  - docker
+
+before_install:
+  - printenv
+  - docker build -t kaktas/service_test -f ./Dockerfile.dev . --build-arg GITHUB_USERNAME=$GITHUB_USERNAME --build-arg GITHUB_TOKEN=$GITHUB_TOKEN
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
