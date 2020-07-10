@@ -3,9 +3,9 @@ sudo: required
 services:
   - docker
 
-env:
-  - APP_NAME=nginx-internal-2
-  - AWS_ECR_ACCOUNT=123287666640
+# env:
+#   - APP_NAME=nginx-internal-2
+#   - AWS_ECR_ACCOUNT=123287666640
 
 
 jobs:
@@ -33,6 +33,7 @@ jobs:
         - docker --version
         - pip install --user awscli
         - export PATH=$PATH:$HOME/.local/bin
+        - aws configure set default.region eu-west-2
         - eval $(aws ecr get-login --no-include-email --region eu-west-2)
-        - docker build -t $AWS_ECR_ACCOUNT.dkr.ecr.eu-west-2.amazonaws.com/$APP_NAME ./nginx
-        - docker push $AWS_ECR_ACCOUNT.dkr.ecr.eu-west-2.amazonaws.com/$APP_NAME
+        - docker build -t 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2 ./nginx
+        - docker push 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2
