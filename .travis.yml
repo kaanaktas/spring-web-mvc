@@ -1,17 +1,38 @@
-language: java
-sudo: false
-script: "mvn cobertura:cobertura"
+language: generic
+sudo: required
+services:
+  - docker
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+env:
+  - APP_NAME=nginx-internal-2
+  - AWS_ECR_ACCOUNT=123287666640
 
-jdk: openjdk8
-cache:
-  directories:
-    - "$HOME/.ivy2/cache"
-    - "$HOME/.m2"
-install:
-  - mvn -N io.takari:maven:wrapper
-  - ./mvnw install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
-notifications:
-  email: false
+
+jobs:
+  include:
+    # - stage: test docker image
+    #   script:
+    #     - docker build -t $DOCKER_ID/danske-ob-service -f ./danske-ob-service/Dockerfile.dev ./danske-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+    # - stage: build docker images
+    #   script:
+    #     - docker build -t $DOCKER_ID/danske-ob-service ./danske-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+    #     # - docker build -t $DOCKER_ID/hsbc-ob-service ./hsbc-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+    #     # - docker build -t $DOCKER_ID/lloyds-ob-service ./lloyds-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+    #     - docker build -t $DOCKER_ID/web-management ./web-management --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+    #     - docker build -t kaktas/nginx-internal ./nginx
+
+    #     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+    #     - docker push $DOCKER_ID/danske-ob-service
+    #     # - docker push $DOCKER_ID/hsbc-ob-service
+    #     # - docker push $DOCKER_ID/lloyds-ob-service
+    #     - docker push $DOCKER_ID/web-management
+    #     - docker push kaktas/nginx-internal
+    - stage: deploy to AWS
+      script:
+        - docker --version
+        - pip install --user awscli
+        - export PATH=$PATH:$HOME/.local/bin
+        - eval $(aws ecr get-login --no-include-email --region eu-west-2)
+        - docker build -t $AWS_ECR_ACCOUNT.dkr.ecr.eu-west-2.amazonaws.com/$APP_NAME ./nginx
+        - docker push $AWS_ECR_ACCOUNT.dkr.ecr.eu-west-2.amazonaws.com/$APP_NAME
