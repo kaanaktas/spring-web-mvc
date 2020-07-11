@@ -5,6 +5,7 @@ services:
 
 addons:
   ssh_known_hosts: 3.11.253.168
+
 # env:
 #   global:
 #     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
@@ -33,7 +34,8 @@ jobs:
         # - docker push $DOCKER_ID/web-management
         # - docker push kaktas/nginx-internal-2
     - stage: deploy and run
-      before_install:
+      script:
         - openssl aes-256-cbc -K $encrypted_222a3346a125_key -iv $encrypted_222a3346a125_iv -in LightsailDefaultKey-eu-west-2.pem.enc -out LightsailDefaultKey-eu-west-2.pem -d
         - chmod 600 LightsailDefaultKey-eu-west-2.pem
-        - ssh -i LightsailDefaultKey-eu-west-2.pem ec2-user@3.11.253.168 "/bin/bash ./deploy_app.sh kaktas/nginx-internal-2:latest"
+        - scp ./deploy_app.sh ec2-user@3.11.253.168:/home/ec2-user/scripts/scripts
+        - ssh -i LightsailDefaultKey-eu-west-2.pem ec2-user@3.11.253.168 "/bin/bash /home/ec2-user/scripts/deploy_app.sh kaktas/nginx-internal-2:latest nginx_internal"

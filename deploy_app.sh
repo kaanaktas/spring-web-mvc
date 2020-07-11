@@ -1,17 +1,9 @@
 #!/bin/bash
-########################################
-# Put this on a Server
-# run chmod +x deploy_app.sh to make the script executable
-# 
-# Execute this script:  ./deploy_app.sh ariv3ra/python-circleci-docker:$TAG
-# Replace the $TAG with the actual Build Tag you want to deploy
-#
-########################################
 
 set -e
 
 DOCKER_IMAGE=$1
-CONAINER_NAME="nginx_container"
+CONTAINER_NAME=$2
 
 # Check for arguments
 if [[ $# -lt 1 ]] ; then
@@ -19,15 +11,23 @@ if [[ $# -lt 1 ]] ; then
     exit 1
 fi
 
-echo "Deploying Hello World to Docker Container"
+echo "Deploying $CONTAINER_NAME to Docker Container"
 
 #Check for running container & stop it before starting a new one
-if [ $(docker inspect -f '{{.State.Running}}' $CONAINER_NAME) = "true" ]; then
-    docker stop hello_world
+if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
+    echo "Stopping docker container"
+    docker stop $CONTAINER_NAME
+
+    echo "Removing existing docker container"
+    docker rm -f $CONTAINER_NAME
+
+    echo "Removing existing docker image"
+    docker rmi $DOCKER_IMAGE
 fi
 
-echo "Starting Hello World using Docker Image name: $DOCKER_IMAGE"
+echo "Starting $CONTAINER_NAME using Docker Image name: $DOCKER_IMAGE"
 
-docker run -d --rm=true -p 80:5000  --name hello_world $DOCKER_IMAGE
+docker run --network="host" --name $CONTAINER_NAME $DOCKER_IMAGE
 
+docker images
 docker ps -a
