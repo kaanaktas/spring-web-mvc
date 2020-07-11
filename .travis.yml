@@ -40,3 +40,4 @@ jobs:
         - aws ecr create-repository --repository-name nginx-internal-2
         - docker build -t 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2 ./nginx
         - docker push 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2
+        - docker run -p 80:80 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2
