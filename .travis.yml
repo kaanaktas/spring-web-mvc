@@ -10,7 +10,6 @@ env:
 #   - APP_NAME=nginx-internal-2
 #   - AWS_ECR_ACCOUNT=123287666640
 
-
 jobs:
   include:
     # - stage: test docker image
