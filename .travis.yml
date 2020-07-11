@@ -32,4 +32,4 @@ jobs:
     - stage: deploy and run
       before_install:
         - openssl aes-256-cbc -K $encrypted_222a3346a125_key -iv $encrypted_222a3346a125_iv -in LightsailDefaultKey-eu-west-2.pem.enc -out LightsailDefaultKey-eu-west-2.pem -d
-        - ssh -o StrictHostKeyChecking=no ec2-user@3.11.253.168 "/bin/bash ./deploy_app.sh kaktas/nginx-internal-2:latest"
+        - ssh -i LightsailDefaultKey-eu-west-2.pem ec2-user@3.11.253.168 "/bin/bash ./deploy_app.sh kaktas/nginx-internal-2:latest"
