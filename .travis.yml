@@ -3,10 +3,10 @@ sudo: required
 services:
   - docker
 
-env:
-  global:
-    - secure: "KrB5lzdRF8QnriIDmI6WXCbhzGDteEDWKh+Quc+Etp6a3E9V46A2dnKaf1PeHJqy/d7hg+WA1NSbvRqdSWmqQCQSpRvnnCtuEVB/YeHxqGLfkK3NuYiF3XT0tWj5zMakb9/YS6YD3CvVgmy4EuyMKrnL0Q5h9WcOtjVlax/cl4NPU++5h6GaSy28wyX+rBU/PBDgdzDvqJ5JfkIwqZN6Ivs0/fjohZaSavNU8KOXaOnYJeO3ukQoQi2cADeOLOA3rmoyOJxX2oOttE5FRXEWzcGT2DIy/zXE73EUl5J2tGBtKCG2qltCzTAP7rdpbZN4sjo1LOIHNBJgPI5x86HoU8NaxBN1E6ocXP+junNrplIKLlVTR4DBwvp3cPfaVLprw4uxi8LDW1D/gpw05cimZ3/SN6wDsUmcrV9pUEHatBa4uSlX25pS/K1r0AVHcvm52dFntFmYQLeJxl9s2hRK+4ZlbORilY4VD7z/8U3tQbn8WcouV5hE5s6m9C5c3JI8Odj2fJft30SByQflXksNZcWzkU0Pg5xVqXVh404XWndoY78e0I3wvYfCu0ZApxgefo9XIR4rpcgPOjJNjx4dYwDHIxPHIJt3g6tDJxw6JKinVgqanORp+5S91yuK3S5j6NPnaeKuRIxs6+8y9iJPXFit3m1BTuhl8dUZ24hrnIo="
-    - secure: "JEowcUMhTSYN+dsAEvtgwXU2Nd9gEsymraayT9gwBuCnz7XFbuK6ZFFDx8sXGg5I5UzbSE+y0TAFDSFQ7XhtmJMwKsKDPfpHGqEgg2O0q1R1qgZ8rNhCK3xBRfc3i+8IeE79hSQpIRrhp+GDyoRQLnfCoNzQVenmpG8KtOkl4BruXaFHwQrtbVxKiBCYgGj1I6qWprMXSlfLChCxA2BNvQM0NLr+0Qm+fPfucDpoo+7oGv3WMVdhx7toQRBxiojiwY6d9EPVJiQ2eIJzdKyndNLRH2VFXip1RgxAM3cdOsNm6VP68nAPCP4s/RWg1xoP9d3YcCSY5kiYJE4uTk8eBNpazI2hVjiR/uu0JdghnKEkyhxTVnemJ3ejx5WUcYUiXuSyyKvmikQLneIOrSNMPngCADCmKtWkdJrOnGQBb8k1TqJ6GRAilDrVh/bYwGkB9lTNBCpu4jqDcCe0XVaF7BNwX5feGUPGI/yVEohmhbLtwOXX0g2XB8MnttrBd5udtnakJMLexhkwIqb1hzcjPBqLg/ddVzOHixiOLt+i91SxA+L0LcLlc7AcCtd/GOYe2/Gl2tg54vFOGSchhnzI5L/Q6MCyfLdTTtWY2YvLt+nc2Z+S/ZFbsao7JhI9Rz3x+KqTiQeWfioNilRWZ/NZgaTptXwqJg4Bmotuln9LzRI="
+# env:
+#   global:
+#     - secure: "KrB5lzdRF8QnriIDmI6WXCbhzGDteEDWKh+Quc+Etp6a3E9V46A2dnKaf1PeHJqy/d7hg+WA1NSbvRqdSWmqQCQSpRvnnCtuEVB/YeHxqGLfkK3NuYiF3XT0tWj5zMakb9/YS6YD3CvVgmy4EuyMKrnL0Q5h9WcOtjVlax/cl4NPU++5h6GaSy28wyX+rBU/PBDgdzDvqJ5JfkIwqZN6Ivs0/fjohZaSavNU8KOXaOnYJeO3ukQoQi2cADeOLOA3rmoyOJxX2oOttE5FRXEWzcGT2DIy/zXE73EUl5J2tGBtKCG2qltCzTAP7rdpbZN4sjo1LOIHNBJgPI5x86HoU8NaxBN1E6ocXP+junNrplIKLlVTR4DBwvp3cPfaVLprw4uxi8LDW1D/gpw05cimZ3/SN6wDsUmcrV9pUEHatBa4uSlX25pS/K1r0AVHcvm52dFntFmYQLeJxl9s2hRK+4ZlbORilY4VD7z/8U3tQbn8WcouV5hE5s6m9C5c3JI8Odj2fJft30SByQflXksNZcWzkU0Pg5xVqXVh404XWndoY78e0I3wvYfCu0ZApxgefo9XIR4rpcgPOjJNjx4dYwDHIxPHIJt3g6tDJxw6JKinVgqanORp+5S91yuK3S5j6NPnaeKuRIxs6+8y9iJPXFit3m1BTuhl8dUZ24hrnIo="
+#     - secure: "JEowcUMhTSYN+dsAEvtgwXU2Nd9gEsymraayT9gwBuCnz7XFbuK6ZFFDx8sXGg5I5UzbSE+y0TAFDSFQ7XhtmJMwKsKDPfpHGqEgg2O0q1R1qgZ8rNhCK3xBRfc3i+8IeE79hSQpIRrhp+GDyoRQLnfCoNzQVenmpG8KtOkl4BruXaFHwQrtbVxKiBCYgGj1I6qWprMXSlfLChCxA2BNvQM0NLr+0Qm+fPfucDpoo+7oGv3WMVdhx7toQRBxiojiwY6d9EPVJiQ2eIJzdKyndNLRH2VFXip1RgxAM3cdOsNm6VP68nAPCP4s/RWg1xoP9d3YcCSY5kiYJE4uTk8eBNpazI2hVjiR/uu0JdghnKEkyhxTVnemJ3ejx5WUcYUiXuSyyKvmikQLneIOrSNMPngCADCmKtWkdJrOnGQBb8k1TqJ6GRAilDrVh/bYwGkB9lTNBCpu4jqDcCe0XVaF7BNwX5feGUPGI/yVEohmhbLtwOXX0g2XB8MnttrBd5udtnakJMLexhkwIqb1hzcjPBqLg/ddVzOHixiOLt+i91SxA+L0LcLlc7AcCtd/GOYe2/Gl2tg54vFOGSchhnzI5L/Q6MCyfLdTTtWY2YvLt+nc2Z+S/ZFbsao7JhI9Rz3x+KqTiQeWfioNilRWZ/NZgaTptXwqJg4Bmotuln9LzRI="
 #   - APP_NAME=nginx-internal-2
 #   - AWS_ECR_ACCOUNT=123287666640
 
@@ -15,29 +15,20 @@ jobs:
     # - stage: test docker image
     #   script:
     #     - docker build -t $DOCKER_ID/danske-ob-service -f ./danske-ob-service/Dockerfile.dev ./danske-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
-    # - stage: build docker images
-    #   script:
-    #     - docker build -t $DOCKER_ID/danske-ob-service ./danske-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
-    #     # - docker build -t $DOCKER_ID/hsbc-ob-service ./hsbc-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
-    #     # - docker build -t $DOCKER_ID/lloyds-ob-service ./lloyds-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
-    #     - docker build -t $DOCKER_ID/web-management ./web-management --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
-    #     - docker build -t kaktas/nginx-internal ./nginx
-
-    #     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-
-    #     - docker push $DOCKER_ID/danske-ob-service
-    #     # - docker push $DOCKER_ID/hsbc-ob-service
-    #     # - docker push $DOCKER_ID/lloyds-ob-service
-    #     - docker push $DOCKER_ID/web-management
-    #     - docker push kaktas/nginx-internal
-    - stage: deploy to AWS
+    - stage: build docker images
       script:
-        - docker --version
-        - pip install --user awscli
-        - export PATH=$PATH:$HOME/.local/bin
-        - aws configure set default.region eu-west-2
-        - eval $(aws ecr get-login --no-include-email --region eu-west-2)
-        - aws ecr create-repository --repository-name nginx-internal-2
-        - docker build -t 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2 ./nginx
-        - docker push 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2
-        - docker run -p 80:80 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2
+        # - docker build -t $DOCKER_ID/danske-ob-service ./danske-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+        # - docker build -t $DOCKER_ID/hsbc-ob-service ./hsbc-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+        # - docker build -t $DOCKER_ID/lloyds-ob-service ./lloyds-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+        # - docker build -t $DOCKER_ID/web-management ./web-management --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
+        - docker build -t kaktas/nginx-internal-2 ./nginx
+
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+        # - docker push $DOCKER_ID/danske-ob-service
+        # - docker push $DOCKER_ID/hsbc-ob-service
+        # - docker push $DOCKER_ID/lloyds-ob-service
+        # - docker push $DOCKER_ID/web-management
+        - docker push kaktas/nginx-internal-2
+    - stage: deploy and run
+      script: ssh -o StrictHostKeyChecking=no ec2-user@3.11.253.168 "/bin/bash ./deploy_app.sh kaktas/nginx-internal-2:latest"
