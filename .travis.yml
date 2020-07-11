@@ -38,4 +38,4 @@ jobs:
         - aws configure set default.region eu-west-2
         - eval $(aws ecr get-login --no-include-email --region eu-west-2)
         - docker build -t 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2 ./nginx
-        - docker push 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2
+        - docker push 123287666640.dkr.ecr.eu-west-2.amazonaws.com/nginx-internal-2:latest
