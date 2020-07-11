@@ -27,7 +27,7 @@ fi
 
 echo "Starting $CONTAINER_NAME using Docker Image name: $DOCKER_IMAGE"
 
-docker run --network="host" --name $CONTAINER_NAME $DOCKER_IMAGE
+docker run -d --network="host" --name $CONTAINER_NAME $DOCKER_IMAGE
 
 docker images
 docker ps -a
