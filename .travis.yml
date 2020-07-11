@@ -21,7 +21,7 @@ jobs:
         # - docker build -t $DOCKER_ID/hsbc-ob-service ./hsbc-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
         # - docker build -t $DOCKER_ID/lloyds-ob-service ./lloyds-ob-service --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
         # - docker build -t $DOCKER_ID/web-management ./web-management --build-arg GITHUB_USERNAME=${GITHUB_USERNAME} --build-arg GITHUB_TOKEN=${GITHUB_TOKEN}
-        # //- docker build -t kaktas/nginx-internal-2 ./nginx
+        # - docker build -t kaktas/nginx-internal-2 ./nginx
 
         # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
